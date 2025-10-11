@@ -5,4 +5,9 @@ import tailwindcss from "@tailwindcss/vite";
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss()],
+  build: {
+    target: 'es2018', // modern JS output
+    minify: 'esbuild', // super fast minifier
+    sourcemap: false,
+  },
 });

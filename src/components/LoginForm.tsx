@@ -10,17 +10,20 @@ const LoginForm = ({ isSignInForm }: LoginFormProps) => {
   const [formErrorMessage, setFormErrorMessage] = useState<string | null>(null);
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
+  const nameRef = useRef<HTMLInputElement>(null);
+
   const submitButtonHandler = () => {
     const message = validateFormInput(
       emailRef.current?.value ?? null,
-      passwordRef.current?.value ?? null
+      passwordRef.current?.value ?? null,
+      nameRef.current?.value ?? null
     );
-    setFormErrorMessage(message);
+    setFormErrorMessage(message ?? null);
   };
 
   return (
     <form className="flex flex-col" onSubmit={(e) => e.preventDefault()}>
-      {!isSignInForm && <TextInput placeholder="Full Name" />}
+      {!isSignInForm && <TextInput placeholder="Full Name" ref={nameRef} />}
       <TextInput placeholder="Email" ref={emailRef} />
       <TextInput placeholder="Password" type="password" ref={passwordRef} />
       {formErrorMessage && (
