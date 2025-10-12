@@ -1,6 +1,8 @@
 import { useRef, useState } from "react";
 import TextInput from "./TextInput";
 import { validateFormInput } from "../utils/utilityFunctions";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../utils/firebaseConfig";
 
 interface LoginFormProps {
   isSignInForm: boolean;
@@ -18,7 +20,27 @@ const LoginForm = ({ isSignInForm }: LoginFormProps) => {
       passwordRef.current?.value ?? null,
       nameRef.current?.value ?? null
     );
-    setFormErrorMessage(message ?? null);
+    setFormErrorMessage(message);
+
+    if (message) return;
+
+    if (!isSignInForm) {
+      //sign up user logic
+      createUserWithEmailAndPassword(
+        auth,
+        emailRef.current?.value ?? "",
+        passwordRef.current?.value ?? ""
+      )
+        .then((userCredential) => {
+          const user = userCredential.user;
+          console.log(user);
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setFormErrorMessage(errorCode + ": " + errorMessage);
+        });
+    }
   };
 
   return (
