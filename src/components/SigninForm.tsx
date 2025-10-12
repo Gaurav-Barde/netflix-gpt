@@ -8,7 +8,7 @@ interface LoginFormProps {
   isSignInForm: boolean;
 }
 
-const LoginForm = ({ isSignInForm }: LoginFormProps) => {
+const SigninForm = ({ isSignInForm }: LoginFormProps) => {
   const [formErrorMessage, setFormErrorMessage] = useState<string | null>(null);
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
@@ -62,4 +62,4 @@ const LoginForm = ({ isSignInForm }: LoginFormProps) => {
   );
 };
 
-export default LoginForm;
+export default SigninForm;

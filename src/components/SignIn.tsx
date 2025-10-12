@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { BACKGROUND_IMAGE_URL } from "../utils/constants";
 import Header from "./Header";
-import LoginForm from "./LoginForm";
+import SigninForm from "./SigninForm";
 
-const Login = () => {
+const Signin = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
 
   const toggleSignInForm = () => {
@@ -21,7 +21,7 @@ const Login = () => {
           <h1 className="text-white font-bold text-3xl mb-8">
             {isSignInForm ? "Sign In" : "Sign Up"}
           </h1>
-          <LoginForm isSignInForm={isSignInForm} />
+          <SigninForm isSignInForm={isSignInForm} />
           <p className="text-gray-100 mt-6 font-extralight">
             {isSignInForm ? "New to Netflix?" : "Already Registered?"}
             <button
@@ -37,4 +37,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signin;
