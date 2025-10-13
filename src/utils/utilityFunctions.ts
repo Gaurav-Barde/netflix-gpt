@@ -8,10 +8,10 @@ export const validateFormInput = (
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(
       password ?? ""
     );
-  const fullNameRegex =
-    fullName && /^[a-zA-Z]+(?: [a-zA-Z]+)+$/.test(fullName ?? "");
+  const fullNameRegex = /^[a-zA-Z]+(?: [a-zA-Z]+)+$/;
 
-  if (!fullNameRegex) return "Please enter a valid full name";
+  if (fullName && !fullNameRegex.test(fullName))
+    return "Please enter a valid full name";
   if (!emailRegEx) return "Please enter a valid email address.";
   if (!passwordRegex) return "Please enter a valid password.";
 

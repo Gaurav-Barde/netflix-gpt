@@ -1,7 +1,10 @@
 import { useRef, useState } from "react";
 import TextInput from "./TextInput";
 import { validateFormInput } from "../utils/utilityFunctions";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import { auth } from "../utils/firebaseConfig";
 
 interface LoginFormProps {
@@ -32,6 +35,23 @@ const SigninForm = ({ isSignInForm }: LoginFormProps) => {
         passwordRef.current?.value ?? ""
       )
         .then((userCredential) => {
+          const user = userCredential.user;
+          console.log(user);
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setFormErrorMessage(errorCode + ": " + errorMessage);
+        });
+    } else {
+      //sign in user logic
+      signInWithEmailAndPassword(
+        auth,
+        emailRef.current?.value ?? "",
+        passwordRef.current?.value ?? ""
+      )
+        .then((userCredential) => {
+          // Signed in
           const user = userCredential.user;
           console.log(user);
         })
