@@ -4,9 +4,13 @@ import { validateFormInput } from "../utils/utilityFunctions";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebaseConfig";
 import { useNavigate } from "react-router";
+import { useDispatch } from "react-redux";
+import { addUser } from "../utils/redux/slices/userSlice";
+import { MY_PERSONAL_AVATAR_URL } from "../utils/constants";
 
 interface LoginFormProps {
   isSignInForm: boolean;
@@ -18,6 +22,7 @@ const SigninForm = ({ isSignInForm }: LoginFormProps) => {
   const passwordRef = useRef<HTMLInputElement>(null);
   const nameRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const submitButtonHandler = () => {
     const message = validateFormInput(
@@ -38,7 +43,21 @@ const SigninForm = ({ isSignInForm }: LoginFormProps) => {
       )
         .then((userCredential) => {
           const user = userCredential.user;
-          navigate("/browse");
+          updateProfile(user, {
+            displayName: nameRef.current?.value,
+            photoURL: MY_PERSONAL_AVATAR_URL,
+          })
+            .then(() => {
+              const user = auth.currentUser;
+              if (user) {
+                const { uid, email, displayName, photoURL } = user;
+                dispatch(addUser({ uid, email, displayName, photoURL }));
+                navigate("/browse");
+              }
+            })
+            .catch((error) => {
+              setFormErrorMessage(error.message);
+            });
         })
         .catch((error) => {
           const errorCode = error.code;

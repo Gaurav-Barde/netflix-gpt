@@ -6,3 +6,6 @@ export const BACKGROUND_IMAGE_URL =
 
 export const USER_AVATAR_URL =
   "https://wallpapers.com/images/thumbnail/netflix-profile-pictures-1000-x-1000-qo9h82134t9nv0j0.jpg";
+
+export const MY_PERSONAL_AVATAR_URL =
+  "https://avatars.githubusercontent.com/u/20964759?v=4";
