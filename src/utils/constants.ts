@@ -3,3 +3,6 @@ export const LOGO_URL =
 
 export const BACKGROUND_IMAGE_URL =
   "https://assets.nflxext.com/ffe/siteui/vlv3/d44b8e7c-e52b-45bc-9568-7d009f91c9ee/web/IN-en-20250929-TRIFECTA-perspective_82a31bf9-6c15-4866-9ba4-fed503316d1d_large.jpg";
+
+export const USER_AVATAR_URL =
+  "https://wallpapers.com/images/thumbnail/netflix-profile-pictures-1000-x-1000-qo9h82134t9nv0j0.jpg";

@@ -6,6 +6,7 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth } from "../utils/firebaseConfig";
+import { useNavigate } from "react-router";
 
 interface LoginFormProps {
   isSignInForm: boolean;
@@ -16,6 +17,7 @@ const SigninForm = ({ isSignInForm }: LoginFormProps) => {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
   const nameRef = useRef<HTMLInputElement>(null);
+  const navigate = useNavigate();
 
   const submitButtonHandler = () => {
     const message = validateFormInput(
@@ -36,7 +38,7 @@ const SigninForm = ({ isSignInForm }: LoginFormProps) => {
       )
         .then((userCredential) => {
           const user = userCredential.user;
-          console.log(user);
+          navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -53,7 +55,7 @@ const SigninForm = ({ isSignInForm }: LoginFormProps) => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          console.log(user);
+          navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;
