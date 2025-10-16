@@ -1,15 +1,34 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { LOGO_URL, USER_AVATAR_URL } from "../utils/constants";
 import UserOptionsDropdown from "./UserOptionsDropdown";
 import { RiArrowDropDownLine } from "react-icons/ri";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../utils/firebaseConfig";
+import { addUser, removeUser } from "../utils/redux/slices/userSlice";
+import { useNavigate } from "react-router";
 
 const Header = () => {
   const [isUserOptionsVisible, setIsUserOptionsVisible] = useState(false);
-
   const user = useSelector(
     (state: { user: { photoURL?: string } }) => state.user
   );
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const { uid, email, displayName, photoURL } = user;
+        dispatch(addUser({ uid, email, displayName, photoURL }));
+        navigate("/browse");
+      } else {
+        dispatch(removeUser());
+        navigate("/");
+      }
+    });
+  }, []);
 
   const userIconClickHandler = () => {
     setIsUserOptionsVisible((prev) => !prev);

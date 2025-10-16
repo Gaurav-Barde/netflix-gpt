@@ -1,20 +1,14 @@
 import { signOut } from "firebase/auth";
 import { auth } from "../utils/firebaseConfig";
-import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";
 
 const UserOptionsDropdown = () => {
-  const navigate = useNavigate();
   const user = useSelector((state: any) => state.user);
 
   const signOutButtonHandler = () => {
-    signOut(auth)
-      .then(() => {
-        navigate("/");
-      })
-      .catch((error) => {
-        console.error("Error signing out: ", error);
-      });
+    signOut(auth).catch((error) => {
+      console.error("Error signing out: ", error);
+    });
   };
 
   return (

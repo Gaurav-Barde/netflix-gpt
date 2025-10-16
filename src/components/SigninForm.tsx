@@ -7,9 +7,6 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebaseConfig";
-import { useNavigate } from "react-router";
-import { useDispatch } from "react-redux";
-import { addUser } from "../utils/redux/slices/userSlice";
 import { MY_PERSONAL_AVATAR_URL } from "../utils/constants";
 
 interface LoginFormProps {
@@ -21,8 +18,6 @@ const SigninForm = ({ isSignInForm }: LoginFormProps) => {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
   const nameRef = useRef<HTMLInputElement>(null);
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   const submitButtonHandler = () => {
     const message = validateFormInput(
@@ -46,18 +41,9 @@ const SigninForm = ({ isSignInForm }: LoginFormProps) => {
           updateProfile(user, {
             displayName: nameRef.current?.value,
             photoURL: MY_PERSONAL_AVATAR_URL,
-          })
-            .then(() => {
-              const user = auth.currentUser;
-              if (user) {
-                const { uid, email, displayName, photoURL } = user;
-                dispatch(addUser({ uid, email, displayName, photoURL }));
-                navigate("/browse");
-              }
-            })
-            .catch((error) => {
-              setFormErrorMessage(error.message);
-            });
+          }).catch((error) => {
+            setFormErrorMessage(error.message);
+          });
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -70,17 +56,11 @@ const SigninForm = ({ isSignInForm }: LoginFormProps) => {
         auth,
         emailRef.current?.value ?? "",
         passwordRef.current?.value ?? ""
-      )
-        .then((userCredential) => {
-          // Signed in
-          const user = userCredential.user;
-          navigate("/browse");
-        })
-        .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          setFormErrorMessage(errorCode + ": " + errorMessage);
-        });
+      ).catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        setFormErrorMessage(errorCode + ": " + errorMessage);
+      });
     }
   };
 
