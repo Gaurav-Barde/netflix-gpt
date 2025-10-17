@@ -7,7 +7,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebaseConfig";
-import { MY_PERSONAL_AVATAR_URL } from "../utils/constants";
+import { USER_AVATAR_URL } from "../utils/constants";
 
 interface LoginFormProps {
   isSignInForm: boolean;
@@ -40,7 +40,7 @@ const SigninForm = ({ isSignInForm }: LoginFormProps) => {
           const user = userCredential.user;
           updateProfile(user, {
             displayName: nameRef.current?.value,
-            photoURL: MY_PERSONAL_AVATAR_URL,
+            photoURL: USER_AVATAR_URL,
           }).catch((error) => {
             setFormErrorMessage(error.message);
           });
