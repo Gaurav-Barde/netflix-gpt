@@ -9,3 +9,12 @@ export const USER_AVATAR_URL =
 
 export const MY_PERSONAL_AVATAR_URL =
   "https://avatars.githubusercontent.com/u/20964759?v=4";
+
+export const TMDB_API_OPTIONS = {
+  method: "GET",
+  headers: {
+    accept: "application/json",
+    Authorization:
+      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhZmE4MTczY2VmZjJhOGUzZDdiNDMzNGJkMjg0NjRiOSIsIm5iZiI6MTc2MDY4ODU1MC4xMjgsInN1YiI6IjY4ZjFmOWE2NDFhZGViNmZiOTc3ZGExYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.4AEq8TeV7fYAranIxsSI84hW4VqCsmMdGbNVZSt2MOA",
+  },
+};
