@@ -2,7 +2,8 @@ import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
 export interface Movie {
   id: number;
-  title: string | string;
+  title: string;
+  overview: string;
 }
 
 interface MoviesState {
