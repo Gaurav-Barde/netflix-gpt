@@ -1,22 +1,33 @@
 import { useEffect } from "react";
-import { API_OPTIONS, NOW_PLAYING_API_URL } from "../utils/constants";
 import Header from "./Header";
+import { useDispatch } from "react-redux";
+import { fetchNowPlayingMovies } from "../utils/redux/slices/moviesSlice";
+import MainContainer from "./MainContainer";
+import SecondaryContainer from "./SecondaryContainer";
 
 const Browse = () => {
-  const getNowPlayingMovies = async () => {
-    const data = await fetch(NOW_PLAYING_API_URL, API_OPTIONS);
-    const json = await data.json();
-    console.log(json);
-  };
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    getNowPlayingMovies();
+    dispatch(fetchNowPlayingMovies());
   }, []);
 
   return (
     <div className="min-h-screen">
       <Header />
       <h1 className="text-4xl font-bold mt-10 text-center">Browse Page</h1>
+      <MainContainer />
+      <SecondaryContainer />
+      {/* 
+        Main Container
+          - Video Title
+          - Video Desc
+          - Video Background
+        Secondary Container
+          - MovieList * n
+            - VideoCards * n
+      
+      */}
     </div>
   );
 };

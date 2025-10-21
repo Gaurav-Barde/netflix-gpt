@@ -29,12 +29,12 @@ const moviesSlice = createSlice({
       state.loading = true;
     },
     fetchNowPlayingMoviesSuccess: (state, action: PayloadAction<Movie[]>) => {
-      state.loading = false;
       state.movieList.nowPlayingMovies = action.payload;
+      state.loading = false;
     },
     fetchNowPlayingMoviesFailure: (state, action: PayloadAction<string>) => {
-      state.loading = false;
       state.error = action.payload;
+      state.loading = false;
     },
   },
 });
