@@ -21,3 +21,9 @@ export const API_OPTIONS = {
 
 export const NOW_PLAYING_API_URL =
   "https://api.themoviedb.org/3/movie/now_playing?page=1";
+
+export const MOVIE_VIDEOS_URL = (movieId: number) =>
+  `https://api.themoviedb.org/3/movie/${movieId}/videos`;
+
+export const YOUTUBE_EMBED_URL = (videoKey: string) =>
+  `https://www.youtube.com/embed/${videoKey}?si=cj8MZ17mpX5jCKyW`;

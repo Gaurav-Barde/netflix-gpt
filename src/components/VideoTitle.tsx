@@ -11,7 +11,7 @@ const VideoTitle = ({ title, overview }: VideoTitleProps) => {
   return (
     <div className="px-16">
       <h1 className="font-bold text-6xl text-gray-900">{title}</h1>
-      <p className="w-3/12 my-4">{overview}</p>
+      <p className="w-3/12 my-4 text-justify">{overview}</p>
       <div className="flex gap-4">
         <Button
           title="Play"
