@@ -1,24 +1,17 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-
-export interface Movie {
-  id: number;
-  title: string;
-  overview: string;
-}
+import type { Movie, MovieVideo } from "../../../types/types";
 
 interface MoviesState {
   loading: boolean;
-  movieList: {
-    nowPlayingMovies: Movie[];
-  };
+  nowPlayingMovies: Movie[];
+  movieVideos: MovieVideo[];
   error: string | null;
 }
 
 const initialState: MoviesState = {
   loading: false,
-  movieList: {
-    nowPlayingMovies: [],
-  },
+  nowPlayingMovies: [],
+  movieVideos: [],
   error: null,
 };
 
@@ -30,10 +23,21 @@ const moviesSlice = createSlice({
       state.loading = true;
     },
     fetchNowPlayingMoviesSuccess: (state, action: PayloadAction<Movie[]>) => {
-      state.movieList.nowPlayingMovies = action.payload;
+      state.nowPlayingMovies = action.payload;
       state.loading = false;
     },
     fetchNowPlayingMoviesFailure: (state, action: PayloadAction<string>) => {
+      state.error = action.payload;
+      state.loading = false;
+    },
+    fetchMovieVideos: (state) => {
+      state.loading = true;
+    },
+    fetchMovieVideosSuccess: (state, action: PayloadAction<MovieVideo[]>) => {
+      state.movieVideos = action.payload;
+      state.loading = false;
+    },
+    fetchMovieVideosFailure: (state, action: PayloadAction<string>) => {
       state.error = action.payload;
       state.loading = false;
     },
@@ -44,5 +48,8 @@ export const {
   fetchNowPlayingMovies,
   fetchNowPlayingMoviesSuccess,
   fetchNowPlayingMoviesFailure,
+  fetchMovieVideos,
+  fetchMovieVideosSuccess,
+  fetchMovieVideosFailure,
 } = moviesSlice.actions;
 export default moviesSlice.reducer;

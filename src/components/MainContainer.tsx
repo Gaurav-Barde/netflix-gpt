@@ -1,19 +1,23 @@
-import { useSelector } from "react-redux";
-import type { RootState } from "../utils/redux/appStore";
 import VideoTitle from "./VideoTitle";
+import VideoBackground from "./VideoBackground";
+import useMovies from "../hooks/useMovies";
 
 const MainContainer = () => {
-  const movies = useSelector(
-    (state: RootState) => state.movies.movieList?.nowPlayingMovies
-  );
-  if (movies.length === 0) return;
+  const movies = useMovies();
 
-  const mainMovie = movies[0];
-  const { title, overview } = mainMovie;
+  if (!movies) {
+    return <p>Loading...</p>;
+  }
+
+  const { title, overview, movieTrailer } = movies;
 
   return (
     <div>
-      <VideoTitle title={title} overview={overview} />
+      <VideoTitle
+        title={title}
+        overview={overview || "No overview available"}
+      />
+      <VideoBackground video={movieTrailer || null} />
     </div>
   );
 };

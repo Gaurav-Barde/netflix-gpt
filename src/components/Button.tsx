@@ -9,7 +9,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const Button = ({ title, icon, className = "" }: ButtonProps) => {
-  const baseStyles = "rounded-sm px-6 py-2 text-lg block";
+  const baseStyles = "rounded-sm px-6 py-2 text-lg";
 
   return (
     <button className={`${baseStyles} ${className ?? ""}`}>
