@@ -9,19 +9,15 @@ interface VideoTitleProps {
 
 const VideoTitle = ({ title, overview }: VideoTitleProps) => {
   return (
-    <div className="px-16">
-      <h1 className="font-bold text-6xl text-gray-900">{title}</h1>
-      <p className="w-3/12 my-4 text-justify">{overview}</p>
+    <div className="relative z-100">
+      <h1 className="font-bold text-6xl text-white">{title}</h1>
+      <p className="w-3/12 my-4 text-justify text-gray-200">{overview}</p>
       <div className="flex gap-4">
-        <Button
-          title="Play"
-          icon={FaPlay}
-          className="bg-white border-gray-900 border-1"
-        />
+        <Button title="Play" icon={FaPlay} className="bg-white" />
         <Button
           title="More Info"
           icon={IoIosInformationCircleOutline}
-          className="bg-gray-500/50"
+          className="bg-white/30"
         />
       </div>
     </div>

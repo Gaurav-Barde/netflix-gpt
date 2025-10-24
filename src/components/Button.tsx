@@ -8,12 +8,15 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
 }
 
-const Button = ({ title, icon, className = "" }: ButtonProps) => {
-  const baseStyles = "rounded-sm px-6 py-2 text-lg";
+const Button = ({ title, icon, className = "", ...rest }: ButtonProps) => {
+  const baseStyles =
+    "rounded-sm px-6 py-2 text-lg font-medium flex items-center";
 
   return (
-    <button className={`${baseStyles} ${className ?? ""}`}>
-      {icon ? createElement(icon, { className: "inline-block mr-2" }) : ""}
+    <button className={`${baseStyles} ${className ?? ""}`} {...rest}>
+      {icon
+        ? createElement(icon, { className: "inline-block mr-2 text-2xl" })
+        : ""}
       {title}
     </button>
   );

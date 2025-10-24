@@ -11,10 +11,9 @@ const VideoBackground = ({ video }: VideoBackgroundProps) => {
   }
   const { key } = video;
   return (
-    <div>
+    <div className="absolute top-0 left-0 w-full overflow-x-hidden">
       <iframe
-        width="560"
-        height="315"
+        className="w-full aspect-video"
         src={YOUTUBE_EMBED_URL(key)}
         title="YouTube video player"
         frameBorder="0"
@@ -22,6 +21,7 @@ const VideoBackground = ({ video }: VideoBackgroundProps) => {
         referrerPolicy="strict-origin-when-cross-origin"
         allowFullScreen
       ></iframe>
+      <div className="absolute top-0 left-0 bg-gray-800/90 w-full aspect-video"></div>
     </div>
   );
 };

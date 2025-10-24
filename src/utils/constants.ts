@@ -26,4 +26,4 @@ export const MOVIE_VIDEOS_URL = (movieId: number) =>
   `https://api.themoviedb.org/3/movie/${movieId}/videos`;
 
 export const YOUTUBE_EMBED_URL = (videoKey: string) =>
-  `https://www.youtube.com/embed/${videoKey}?si=cj8MZ17mpX5jCKyW`;
+  `https://www.youtube.com/embed/${videoKey}?autoplay=1&mute=1&controls=0&loop=1&playlist=${videoKey}`;
