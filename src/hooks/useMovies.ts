@@ -18,7 +18,7 @@ const useMovies = (): UseMoviesReturn | null => {
   if (!nowPlayingMovies.length || !movieVideos.length) return null;
 
   const mainMovie = nowPlayingMovies[0];
-  const { title, overview } = mainMovie;
+  const { original_title, overview } = mainMovie;
 
   const filteredMovies = movieVideos.filter(
     (movie) => movie.type === "Trailer"
@@ -27,7 +27,7 @@ const useMovies = (): UseMoviesReturn | null => {
     ? filteredMovies[0]
     : movieVideos[0];
 
-  return { title, overview, movieTrailer };
+  return { title: original_title, overview, movieTrailer };
 };
 
 export default useMovies;

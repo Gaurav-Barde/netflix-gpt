@@ -12,7 +12,7 @@ const MainContainer = () => {
   const { title, overview, movieTrailer } = movies;
 
   return (
-    <div>
+    <div className="px-16 py-[10%]">
       <VideoTitle
         title={title}
         overview={overview || "No overview available"}
