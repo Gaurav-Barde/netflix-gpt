@@ -6,7 +6,11 @@ const MainContainer = () => {
   const movies = useMovies();
 
   if (!movies) {
-    return <p>Loading...</p>;
+    return (
+      <p className="w-screen h-screen flex justify-center items-center text-6xl">
+        Loading...
+      </p>
+    );
   }
 
   const { title, overview, movieTrailer } = movies;

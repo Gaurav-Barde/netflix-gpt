@@ -28,7 +28,7 @@ function* fetchNowPlayingMoviesSaga(): Generator<any, void, any> {
   try {
     const nowPlayingMovies = yield call(fetchNowPlayingMoviesApi);
     yield put(fetchNowPlayingMoviesSuccess(nowPlayingMovies));
-    const movieId = nowPlayingMovies[0]?.id ?? 0;
+    const movieId = nowPlayingMovies[2]?.id ?? 0;
     const movieVideos = yield call(fetchMovieVideos, movieId);
     yield put(fetchMovieVideosSuccess(movieVideos));
   } catch (error: unknown) {

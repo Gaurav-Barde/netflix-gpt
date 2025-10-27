@@ -17,12 +17,10 @@ const useMovies = (): UseMoviesReturn | null => {
   );
   if (!nowPlayingMovies.length || !movieVideos.length) return null;
 
-  const mainMovie = nowPlayingMovies[0];
+  const mainMovie = nowPlayingMovies[2];
   const { original_title, overview } = mainMovie;
 
-  const filteredMovies = movieVideos.filter(
-    (movie) => movie.type === "Trailer"
-  );
+  const filteredMovies = movieVideos.filter((movie) => movie.type === "Teaser");
   const movieTrailer = filteredMovies.length
     ? filteredMovies[0]
     : movieVideos[0];
