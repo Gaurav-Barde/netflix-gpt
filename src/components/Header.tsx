@@ -7,6 +7,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../utils/firebaseConfig";
 import { addUser, removeUser } from "../utils/redux/slices/userSlice";
 import { useNavigate } from "react-router";
+import { toggleShowGptSearch } from "../utils/redux/slices/gptSlice";
 
 const Header = () => {
   const [isUserOptionsVisible, setIsUserOptionsVisible] = useState(false);
@@ -36,21 +37,31 @@ const Header = () => {
     setIsUserOptionsVisible((prev) => !prev);
   };
 
+  const gptSearchToggler = () => dispatch(toggleShowGptSearch());
+
   return (
     <div className="relative w-full bg-gradient-to-b from-gray-800 px-8 py-2 z-10 flex items-center justify-between">
       <img src={LOGO_URL} alt="logo" className="w-40" />
       {user && (
-        <button
-          onClick={userIconClickHandler}
-          className="flex items-center cursor-pointer"
-        >
-          <img
-            src={user?.photoURL ? user?.photoURL : USER_AVATAR_URL}
-            alt="avatar"
-            className="w-10 h-10"
-          />
-          <RiArrowDropDownLine className="font-bold text-4xl text-white" />
-        </button>
+        <div className="flex gap-20">
+          <button
+            onClick={gptSearchToggler}
+            className="bg-green-700 px-4 py-2 rounded-lg text-sm text-gray-200 font-bold cursor-pointer"
+          >
+            GPT Search
+          </button>
+          <button
+            onClick={userIconClickHandler}
+            className="flex items-center cursor-pointer"
+          >
+            <img
+              src={user?.photoURL ? user?.photoURL : USER_AVATAR_URL}
+              alt="avatar"
+              className="w-10 h-10"
+            />
+            <RiArrowDropDownLine className="font-bold text-4xl text-white" />
+          </button>
+        </div>
       )}
       {isUserOptionsVisible && <UserOptionsDropdown />}
     </div>
