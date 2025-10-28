@@ -37,7 +37,7 @@ const Header = () => {
   };
 
   return (
-    <div className="relative  w-screen bg-gradient-to-b from-gray-800 px-8 py-2 z-10 flex items-center justify-between">
+    <div className="relative w-full bg-gradient-to-b from-gray-800 px-8 py-2 z-10 flex items-center justify-between">
       <img src={LOGO_URL} alt="logo" className="w-40" />
       {user && (
         <button

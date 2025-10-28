@@ -19,11 +19,13 @@ export const API_OPTIONS = {
   },
 };
 
-export const NOW_PLAYING_API_URL =
-  "https://api.themoviedb.org/3/movie/now_playing?page=1";
+export const MOVIES_BY_CATEGORY_API_URL = (category: string) =>
+  `https://api.themoviedb.org/3/movie/${category}?page=1`;
 
 export const MOVIE_VIDEOS_URL = (movieId: number) =>
   `https://api.themoviedb.org/3/movie/${movieId}/videos`;
 
 export const YOUTUBE_EMBED_URL = (videoKey: string) =>
   `https://www.youtube.com/embed/${videoKey}?autoplay=1&mute=1&controls=0&loop=1&playlist=${videoKey}`;
+
+export const IMAGE_CDN_URL = "https://image.tmdb.org/t/p/w500";

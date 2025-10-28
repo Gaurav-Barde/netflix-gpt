@@ -16,7 +16,7 @@ const MainContainer = () => {
   const { title, overview, movieTrailer } = movies;
 
   return (
-    <div className="px-16 py-[10%]">
+    <div className="px-16 py-[10%] h-screen bg-gray-900">
       <VideoTitle
         title={title}
         overview={overview || "No overview available"}

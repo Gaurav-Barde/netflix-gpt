@@ -21,7 +21,7 @@ const VideoBackground = ({ video }: VideoBackgroundProps) => {
         referrerPolicy="strict-origin-when-cross-origin"
         allowFullScreen
       ></iframe>
-      <div className="absolute top-0 left-0 bg-gray-800/90 w-full aspect-video"></div>
+      <div className="absolute top-0 left-0 bg-gray-900/30 w-full aspect-video"></div>
     </div>
   );
 };

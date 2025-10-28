@@ -2,18 +2,20 @@ import { call, put, takeLatest, all } from "redux-saga/effects";
 import {
   API_OPTIONS,
   MOVIE_VIDEOS_URL,
-  NOW_PLAYING_API_URL,
+  MOVIES_BY_CATEGORY_API_URL,
 } from "../../constants";
 import {
   fetchNowPlayingMovies,
   fetchNowPlayingMoviesSuccess,
-  fetchNowPlayingMoviesFailure,
   fetchMovieVideosSuccess,
-  fetchMovieVideosFailure,
+  fetchFailure,
+  fetchPopularMoviesSuccess,
+  fetchTopRatedMoviesSuccess,
+  fetchUpcomingMoviesSuccess,
 } from "../slices/moviesSlice";
 
-const fetchNowPlayingMoviesApi = async () => {
-  const data = await fetch(NOW_PLAYING_API_URL, API_OPTIONS);
+const fetchMoviesByCategory = async (category: string) => {
+  const data = await fetch(MOVIES_BY_CATEGORY_API_URL(category), API_OPTIONS);
   const json = await data.json();
   return json.results;
 };
@@ -26,16 +28,25 @@ const fetchMovieVideos = async (id: number) => {
 
 function* fetchNowPlayingMoviesSaga(): Generator<any, void, any> {
   try {
-    const nowPlayingMovies = yield call(fetchNowPlayingMoviesApi);
+    const [nowPlayingMovies, popularMovies, topRatedMovies, upcomingMovies] =
+      yield all([
+        call(fetchMoviesByCategory, "now_playing"),
+        call(fetchMoviesByCategory, "popular"),
+        call(fetchMoviesByCategory, "top_rated"),
+        call(fetchMoviesByCategory, "upcoming"),
+      ]);
     yield put(fetchNowPlayingMoviesSuccess(nowPlayingMovies));
+    yield put(fetchPopularMoviesSuccess(popularMovies));
+    yield put(fetchTopRatedMoviesSuccess(topRatedMovies));
+    yield put(fetchUpcomingMoviesSuccess(upcomingMovies));
+
     const movieId = nowPlayingMovies[2]?.id ?? 0;
     const movieVideos = yield call(fetchMovieVideos, movieId);
     yield put(fetchMovieVideosSuccess(movieVideos));
   } catch (error: unknown) {
     const errorMessage =
       error instanceof Error ? error.message : "Unknown error";
-    yield put(fetchNowPlayingMoviesFailure(errorMessage));
-    yield put(fetchMovieVideosFailure(errorMessage));
+    yield put(fetchFailure(errorMessage));
   }
 }
 

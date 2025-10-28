@@ -14,7 +14,7 @@ const Body = () => {
     },
   ]);
   return (
-    <div className="max-w-screen overflow-x-hidden">
+    <div className="max-w-screen">
       <RouterProvider router={appRouter} />
     </div>
   );
