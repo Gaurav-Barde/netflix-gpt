@@ -3,6 +3,7 @@ import createSagaMiddleware from "redux-saga";
 import userReducer from "./slices/userSlice";
 import moviesReducer from "./slices/moviesSlice";
 import gptSearchReducer from "./slices/gptSlice";
+import languageReducer from "./slices/languageSlice";
 import rootSaga from "./sagas/movieSaga";
 
 const sagaMiddleware = createSagaMiddleware();
@@ -12,6 +13,7 @@ const appStore = configureStore({
     user: userReducer,
     movies: moviesReducer,
     gptSearch: gptSearchReducer,
+    language: languageReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ thunk: false }).concat(sagaMiddleware),

@@ -8,11 +8,17 @@ import { auth } from "../utils/firebaseConfig";
 import { addUser, removeUser } from "../utils/redux/slices/userSlice";
 import { useNavigate } from "react-router";
 import { toggleShowGptSearch } from "../utils/redux/slices/gptSlice";
+import { SUPPORTED_LANGUAGES } from "../utils/langConstants";
+import { setLanguage } from "../utils/redux/slices/languageSlice";
+import type { RootState } from "../utils/redux/appStore";
 
 const Header = () => {
   const [isUserOptionsVisible, setIsUserOptionsVisible] = useState(false);
   const user = useSelector(
     (state: { user: { photoURL?: string } }) => state.user
+  );
+  const showGptSearch = useSelector(
+    (state: RootState) => state.gptSearch.showGptSearch
   );
 
   const dispatch = useDispatch();
@@ -39,16 +45,35 @@ const Header = () => {
 
   const gptSearchToggler = () => dispatch(toggleShowGptSearch());
 
+  const languageOptionChangeHandler = (
+    e: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    dispatch(setLanguage(e.target.value));
+  };
+
   return (
     <div className="relative w-full bg-gradient-to-b from-gray-800 px-8 py-2 z-10 flex items-center justify-between">
       <img src={LOGO_URL} alt="logo" className="w-40" />
       {user && (
         <div className="flex gap-20">
+          {showGptSearch && (
+            <select
+              onChange={languageOptionChangeHandler}
+              className="bg-white px-4 py-2 rounded-lg"
+            >
+              {SUPPORTED_LANGUAGES.map((lang) => (
+                <option key={lang.identifier} value={lang.identifier}>
+                  {lang.name}
+                </option>
+              ))}
+            </select>
+          )}
+
           <button
             onClick={gptSearchToggler}
             className="bg-green-700 px-4 py-2 rounded-lg text-sm text-gray-200 font-bold cursor-pointer"
           >
-            GPT Search
+            {showGptSearch ? "Home Page" : "GPT Search"}
           </button>
           <button
             onClick={userIconClickHandler}

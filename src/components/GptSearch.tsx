@@ -1,5 +1,11 @@
+import GptSearchInput from "./GptSearchInput";
+
 const GptSearch = () => {
-  return <div>GptSearch</div>;
+  return (
+    <div>
+      <GptSearchInput />
+    </div>
+  );
 };
 
 export default GptSearch;
