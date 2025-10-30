@@ -46,4 +46,15 @@ const useHeader = () => {
   ) => {
     dispatch(setLanguage(e.target.value));
   };
+
+  return {
+    isUserOptionsVisible,
+    user,
+    showGptSearch,
+    userIconClickHandler,
+    gptSearchToggler,
+    languageOptionChangeHandler,
+  };
 };
+
+export default useHeader;
