@@ -50,10 +50,6 @@ function* fetchNowPlayingMoviesSaga(): Generator<any, void, any> {
   }
 }
 
-function* watchFetchNowPlayingMovies() {
+export function* watchFetchNowPlayingMovies() {
   yield takeLatest(fetchNowPlayingMovies.type, fetchNowPlayingMoviesSaga);
-}
-
-export default function* rootSaga() {
-  yield all([watchFetchNowPlayingMovies()]);
 }
