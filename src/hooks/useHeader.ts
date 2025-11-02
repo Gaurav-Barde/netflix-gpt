@@ -14,7 +14,7 @@ const useHeader = () => {
     (state: { user: { photoURL?: string } }) => state.user
   );
   const showGptSearch = useSelector(
-    (state: RootState) => state.gptSearch.showGptSearch
+    (state: RootState) => state.gpt.showGptSearch
   );
 
   const dispatch = useDispatch();

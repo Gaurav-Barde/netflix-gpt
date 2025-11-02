@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import createSagaMiddleware from "redux-saga";
+import { all } from "redux-saga/effects";
 import userReducer from "./slices/userSlice";
 import moviesReducer from "./slices/moviesSlice";
-import gptSearchReducer from "./slices/gptSlice";
+import gptReducer from "./slices/gptSlice";
 import languageReducer from "./slices/languageSlice";
-import rootSaga from "./sagas/movieSaga";
+import { watchFetchNowPlayingMovies } from "./sagas/moviesSaga";
+import { watcherGptSaga } from "./sagas/gptSaga";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -12,12 +14,16 @@ const appStore = configureStore({
   reducer: {
     user: userReducer,
     movies: moviesReducer,
-    gptSearch: gptSearchReducer,
+    gpt: gptReducer,
     language: languageReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ thunk: false }).concat(sagaMiddleware),
 });
+
+function* rootSaga() {
+  yield all([watchFetchNowPlayingMovies(), watcherGptSaga()]);
+}
 
 sagaMiddleware.run(rootSaga);
 

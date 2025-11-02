@@ -9,7 +9,7 @@ import GptSearch from "./GptSearch";
 
 const Browse = () => {
   const showGptSearch = useSelector(
-    (state: RootState) => state.gptSearch.showGptSearch
+    (state: RootState) => state.gpt.showGptSearch
   );
   const dispatch = useDispatch();
 
