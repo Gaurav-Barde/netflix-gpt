@@ -5,7 +5,7 @@ interface GptState {
   showGptSearch: boolean;
   loading: boolean;
   gptSuggestions: string[];
-  movieResults: Movie[];
+  movieResults: Movie[][];
   error: null | string;
 }
 
@@ -31,7 +31,7 @@ const gptSlice = createSlice({
       state,
       action: PayloadAction<{
         gptSuggestions: string[];
-        movieResults: Movie[];
+        movieResults: Movie[][];
       }>
     ) => {
       state.gptSuggestions = action.payload.gptSuggestions;

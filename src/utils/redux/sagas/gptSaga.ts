@@ -14,7 +14,7 @@ function* fetchGptMoviesSaga(action: ReturnType<typeof fetchGptMoviesRequest>) {
       fetchGptSuggestions,
       action.payload
     );
-    const movieResults: Movie[] = yield all(
+    const movieResults: Movie[][] = yield all(
       gptSuggestions.map((movie: string) => call(fetchMovieDetails, movie))
     );
     yield put(fetchGptMoviesSuccess({ gptSuggestions, movieResults }));
