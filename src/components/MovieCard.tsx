@@ -5,6 +5,8 @@ type MovieCardProps = {
 };
 
 const MovieCard = ({ posterPath }: MovieCardProps) => {
+  if (!posterPath) return null;
+
   return (
     <div className="flex-none w-56 h-60">
       <img
