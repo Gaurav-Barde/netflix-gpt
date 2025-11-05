@@ -14,8 +14,7 @@ export const API_OPTIONS = {
   method: "GET",
   headers: {
     accept: "application/json",
-    Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhZmE4MTczY2VmZjJhOGUzZDdiNDMzNGJkMjg0NjRiOSIsIm5iZiI6MTc2MDY4ODU1MC4xMjgsInN1YiI6IjY4ZjFmOWE2NDFhZGViNmZiOTc3ZGExYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.4AEq8TeV7fYAranIxsSI84hW4VqCsmMdGbNVZSt2MOA",
+    Authorization: "Bearer " + import.meta.env.VITE_TMDB_API_KEY,
   },
 };
 
@@ -25,7 +24,22 @@ export const MOVIES_BY_CATEGORY_API_URL = (category: string) =>
 export const MOVIE_VIDEOS_URL = (movieId: number) =>
   `https://api.themoviedb.org/3/movie/${movieId}/videos`;
 
+export const MOVIE_DETAILS_URL = (movieName: string) =>
+  `https://api.themoviedb.org/3/search/movie?query=${movieName}&include_adult=false&page=1`;
+
 export const YOUTUBE_EMBED_URL = (videoKey: string) =>
   `https://www.youtube.com/embed/${videoKey}?autoplay=1&mute=1&controls=0&loop=1&playlist=${videoKey}`;
 
 export const IMAGE_CDN_URL = "https://image.tmdb.org/t/p/w500";
+
+export const OPENAI_API_KEY = import.meta.env.VITE_OPENAI_API_KEY;
+
+export const OPENAI_GPT_PROMPT = (userInput: string) => `
+  You are a movie recommendation assistant.
+
+  User request: "${userInput}"
+
+  Generate a list of 5 movies that best match this description.
+
+  Format the response as comma separated string like the example ahead: "Sholay, Mughal-e-Azam, Pakeezah, Guide, Awaara".
+  `;
