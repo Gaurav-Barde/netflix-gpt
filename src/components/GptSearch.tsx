@@ -3,7 +3,7 @@ import GptSearchInput from "./GptSearchInput";
 
 const GptSearch = () => {
   return (
-    <div className="min-h-full bg-gray-700">
+    <div className="min-h-screen bg-gray-700">
       <GptSearchInput />
       <GptMovies />
     </div>

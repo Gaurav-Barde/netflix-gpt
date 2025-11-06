@@ -17,7 +17,7 @@ const useMovies = (): UseMoviesReturn | null => {
   );
   if (!nowPlayingMovies.length || !movieVideos.length) return null;
 
-  const mainMovie = nowPlayingMovies[2];
+  const mainMovie = nowPlayingMovies[0];
   const { original_title, overview } = mainMovie;
 
   const filteredMovies = movieVideos.filter((movie) => movie.type === "Teaser");

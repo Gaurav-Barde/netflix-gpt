@@ -15,10 +15,10 @@ const Header = () => {
   } = useHeader();
 
   return (
-    <div className="relative w-full bg-gradient-to-b from-gray-800 px-8 py-2 z-10 flex items-center justify-between">
+    <div className="relative w-full bg-gradient-to-b from-gray-800 px-2 py-2 z-10 flex flex-col items-center justify-between sm:flex-row sm:px-8 sm:py-2">
       <img src={LOGO_URL} alt="logo" className="w-40" />
       {user && (
-        <div className="flex gap-20">
+        <div className="flex gap-10 sm:gap-20">
           {showGptSearch && (
             <select
               onChange={languageOptionChangeHandler}
