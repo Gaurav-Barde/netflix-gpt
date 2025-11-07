@@ -8,7 +8,7 @@ const MovieCard = ({ posterPath }: MovieCardProps) => {
   if (!posterPath) return null;
 
   return (
-    <div className="flex-none w-56 h-60">
+    <div className="flex-none w-full h-60 sm:w-56">
       <img
         className="w-full h-full rounded-sm"
         alt="movie card"

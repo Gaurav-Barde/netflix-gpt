@@ -13,7 +13,7 @@ const GptMovies = () => {
     );
   }
   return gpt.gptSuggestions.length && gpt.movieResults.length ? (
-    <div className="px-8 w-1/2 mx-auto">
+    <div className="px-8 w-full sm:w-1/2 sm:mx-auto">
       {gpt.gptSuggestions.map((suggestion, index) => (
         <MovieList title={suggestion} movies={gpt.movieResults[index]} />
       ))}
