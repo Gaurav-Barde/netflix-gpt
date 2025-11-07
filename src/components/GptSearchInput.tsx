@@ -18,17 +18,20 @@ const GptSearchInput = () => {
 
   return (
     <div className="flex justify-center">
-      <form className="w-1/2 px-4 py-8" onSubmit={submitHandler}>
+      <form
+        onSubmit={submitHandler}
+        className="w-full px-4 py-8 flex flex-col gap-4 sm:w-1/2 sm:flex-row sm:gap-2"
+      >
         <input
           type="text"
           name="gpt-search"
           ref={gptSearchRef}
           placeholder={lang[selectedLanguage].gptInputPlaceholder}
-          className="text-white border border-green-100 outline-none rounded-full px-4 py-2 w-10/12 mr-2"
+          className="text-white border border-green-100 outline-none rounded-lg px-4 py-2 mr-2 sm:w-10/12"
         />
         <button
           type="submit"
-          className="text-white bg-gray-500 px-4 py-2 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 cursor-pointer"
+          className="text-white bg-gray-500 px-4 py-2 rounded-lg bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-600 cursor-pointer"
         >
           {lang[selectedLanguage].search}
         </button>
