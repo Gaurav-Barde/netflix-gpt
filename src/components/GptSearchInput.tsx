@@ -13,7 +13,9 @@ const GptSearchInput = () => {
 
   const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(fetchGptMoviesRequest(gptSearchRef.current?.value ?? ""));
+    if (gptSearchRef.current) {
+      dispatch(fetchGptMoviesRequest(gptSearchRef.current?.value));
+    }
   };
 
   return (

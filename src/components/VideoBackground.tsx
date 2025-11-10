@@ -11,9 +11,9 @@ const VideoBackground = ({ video }: VideoBackgroundProps) => {
   }
   const { key } = video;
   return (
-    <div className="absolute top-0 left-0 w-full overflow-x-hidden">
+    <div className="absolute top-0 left-0 bottom-0 w-full overflow-x-hidden">
       <iframe
-        className="w-full aspect-video"
+        className="w-full h-full sm:aspect-video sm:h-auto"
         src={YOUTUBE_EMBED_URL(key)}
         title="YouTube video player"
         frameBorder="0"

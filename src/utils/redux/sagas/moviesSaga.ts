@@ -40,7 +40,7 @@ function* fetchNowPlayingMoviesSaga(): Generator<any, void, any> {
     yield put(fetchTopRatedMoviesSuccess(topRatedMovies));
     yield put(fetchUpcomingMoviesSuccess(upcomingMovies));
 
-    const movieId = nowPlayingMovies[2]?.id ?? 0;
+    const movieId = nowPlayingMovies[0]?.id ?? 0;
     const movieVideos = yield call(fetchMovieVideos, movieId);
     yield put(fetchMovieVideosSuccess(movieVideos));
   } catch (error: unknown) {
