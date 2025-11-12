@@ -17,7 +17,7 @@ const Signin = () => {
     >
       <Header />
       <div className="h-screen relative flex justify-center items-center">
-        <div className="bg-black/80 p-16 w-5/12 rounded-lg">
+        <div className="bg-black/80 p-8 md:p-16 w-full md:w-5/12 rounded-lg">
           <h1 className="text-white font-bold text-3xl mb-8">
             {isSignInForm ? "Sign In" : "Sign Up"}
           </h1>
