@@ -10,7 +10,7 @@ interface VideoTitleProps {
 const VideoTitle = ({ title, overview }: VideoTitleProps) => {
   return (
     <div className="relative z-100">
-      <h1 className="font-bold text-6xl text-white">{title}</h1>
+      <h1 className="font-bold text-2xl md:text-6xl text-white">{title}</h1>
       <p className="mt-4 mb-8 text-gray-200  md:w-3/12">{overview}</p>
       <div className="flex gap-4">
         <Button title="Play" icon={FaPlay} className="bg-white" />
