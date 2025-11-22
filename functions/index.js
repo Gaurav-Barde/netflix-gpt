@@ -56,7 +56,7 @@ export const movieRecommendations = functions.https.onRequest((req, res) => {
       const response = await fetch(OPENAI_CHAT_URL, {
         method: "POST",
         headers: {
-          Authorization: `Bearer ${process.env.VITE_OPENAI_API_KEY}`,
+          Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
