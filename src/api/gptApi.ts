@@ -1,20 +1,20 @@
-import { OPENAI_GPT_PROMPT } from "../utils/constants";
-import { openAI } from "../utils/openai";
+import { FIREBASE_CLOUD_URL } from "../utils/constants";
 
 export const fetchGptSuggestions = async (userInput: string) => {
-  const gptPrompt = OPENAI_GPT_PROMPT(userInput);
-  const response = await openAI.chat.completions.create({
-    model: "gpt-5-nano",
-    messages: [{ role: "user", content: gptPrompt }],
-  });
-  const content = response.choices[0].message.content;
+  try {
+    const response = await fetch(FIREBASE_CLOUD_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ query: userInput }),
+    });
 
-  if (!content) {
-    throw new Error("Something went wrong while getting suggestions from GPT");
+    if (!response.ok) {
+      throw new Error(`Server error: ${response.status}`);
+    }
+    const data = await response.json();
+
+    return data?.recommendations.split(",").map((item: string) => item.trim());
+  } catch (e: unknown) {
+    console.log("fetch Suggestions error: ", e);
   }
-
-  return content
-    .split(",")
-    .map((movie) => movie.trim())
-    .filter(Boolean);
 };
