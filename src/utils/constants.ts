@@ -10,6 +10,11 @@ export const USER_AVATAR_URL =
 export const MY_PERSONAL_AVATAR_URL =
   "https://avatars.githubusercontent.com/u/20964759?v=4";
 
+export const OPENAI_URL = "https://api.openai.com/v1/chat/completions";
+
+export const FIREBASE_CLOUD_URL =
+  "https://us-central1-netflix-gpt-a59ce.cloudfunctions.net/movieRecommendations";
+
 export const API_OPTIONS = {
   method: "GET",
   headers: {
@@ -31,15 +36,3 @@ export const YOUTUBE_EMBED_URL = (videoKey: string) =>
   `https://www.youtube.com/embed/${videoKey}?autoplay=1&mute=1&controls=0&loop=1&playlist=${videoKey}`;
 
 export const IMAGE_CDN_URL = "https://image.tmdb.org/t/p/w500";
-
-export const OPENAI_API_KEY = import.meta.env.VITE_OPENAI_API_KEY;
-
-export const OPENAI_GPT_PROMPT = (userInput: string) => `
-  You are a movie recommendation assistant.
-
-  User request: "${userInput}"
-
-  Generate a list of 5 movies that best match this description.
-
-  Format the response as comma separated string like the example ahead: "Sholay, Mughal-e-Azam, Pakeezah, Guide, Awaara".
-  `;
