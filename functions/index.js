@@ -77,8 +77,6 @@ export const movieRecommendations = functions.https.onRequest((req, res) => {
 
       const data = await response.json();
 
-      console.log("OpenAI Raw Response:", data);
-
       res.status(200).json({
         success: true,
         recommendations:
