@@ -18,7 +18,7 @@ jobs:
         run: |
           echo "VITE_TMDB_API_KEY=${{ secrets.VITE_TMDB_API_KEY }}" >> .env.production
       - name: Build Vite project
-      - run: npm run build
+        run: npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
